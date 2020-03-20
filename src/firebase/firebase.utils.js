@@ -13,40 +13,45 @@ const config = {
     measurementId: "G-YDFS7H1G2R"
 };
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if (!userAuth) {
+export const createUserProfileDocument = async ( userAuth, additionalData ) =>
+{
+    if ( !userAuth )
+    {
         return;
     }
 
-    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const userRef = firestore.doc( `users/${ userAuth.uid }` );
     const snapShot = await userRef.get();
 
-    if (!snapShot.exists) {
+    if ( !snapShot.exists )
+    {
         const { displayName, email } = userAuth;
         const createdAt = new Date();
 
-        try {
-            await userRef.set({
+        try
+        {
+            await userRef.set( {
                 displayName,
                 email,
                 createdAt,
                 ...additionalData
-            })
-        } catch (error) {
-            console.error("Error while creating user.", error.message);
+            } );
+        } catch ( error )
+        {
+            console.error( "Error while creating user.", error.message );
         }
     }
 
     return userRef;
-}
+};
 
-firebase.initializeApp(config);
+firebase.initializeApp( config );
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+provider.setCustomParameters( { prompt: 'select_account' } );
+export const signInWithGoogle = () => auth.signInWithPopup( provider );
 
 export default firebase;
