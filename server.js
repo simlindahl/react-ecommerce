@@ -1,7 +1,7 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import path from "path";
+const express = require( "express" );
+const cors = require( "cors" );
+const bodyParser = require( "body-parser" );
+const path = require( "path" );
 
 if ( process.env.NODE_ENV !== "production" )
 {
