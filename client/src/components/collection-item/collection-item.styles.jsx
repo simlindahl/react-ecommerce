@@ -10,10 +10,21 @@ export const CollectionItemContainer = styled.div`
     align-items: center;
     position: relative;
 
-        &:hover {        
+    &:hover {        
         * {
             opacity: 0.85;
             display: flex;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        width: 44vw;
+
+        &:hover {        
+            * {
+                opacity: unset;
+                display: flex;
+            }
         }
     }
 `;
@@ -30,6 +41,13 @@ export const CollectionItemButton = styled(CustomButton)`
     position: absolute;
     bottom: 80px;
     opacity: 0;
+    width: 80%;
+
+    @media screen and (max-width: 800px) {
+        opacity: 0.9;
+        min-width: unset;
+        padding: 0 10px;
+    }
 `;
 
 export const CollectionFooterContainer = styled.div`
